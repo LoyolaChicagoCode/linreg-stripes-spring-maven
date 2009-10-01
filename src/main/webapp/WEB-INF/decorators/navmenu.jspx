@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+  xmlns:s="http://stripes.sourceforge.net/stripes.tld"
+  version="2.0">
+
+  <jsp:directive.page contentType="text/html" />
+
+  <table>
+    <tr>
+      <th>
+        <fmt:message key="navigation.heading"/>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <s:link beanclass="points.stripes.ListActionBean">
+          <fmt:message key="navigation.link.list"/>
+        </s:link>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <s:link event="add" beanclass="points.stripes.AddActionBean">
+          <fmt:message key="navigation.link.add"/>
+        </s:link>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <s:link beanclass="points.stripes.InitActionBean">
+          <fmt:message key="navigation.link.init"/>
+        </s:link>
+      </td>
+    </tr>
+  </table>
+
+</jsp:root>

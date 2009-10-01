@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+  xmlns:s="http://stripes.sourceforge.net/stripes.tld"
+  version="2.0">
+  <jsp:directive.page contentType="text/html"/>
+  <html>
+    <head>
+      <title>
+        <fmt:message key="add.title"/>
+      </title>
+    </head>
+    <body>
+      <h1>
+        <fmt:message key="global.heading"/>
+        <jsp:text>
+        </jsp:text>
+        <fmt:message key="add.heading"/>
+      </h1>
+      <s:form beanclass="points.stripes.AddActionBean">
+        <s:errors/>
+        <table class="addedit">
+          <tr>
+            <td>
+              <fmt:message key="pointForm.prompt.x"/>
+            </td>
+            <td>
+              <s:text name="point.x"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fmt:message key="pointForm.prompt.y"/>
+            </td>
+            <td>
+              <s:text name="point.y"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fmt:message key="pointForm.prompt.color"/>
+            </td>
+            <td>
+              <s:select name="point.color">
+                <s:options-collection collection="${actionBean.colors}"/>
+              </s:select>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <s:submit name="addSubmit">
+                <fmt:message key="add.submit"/>
+              </s:submit>
+            </td>
+          </tr>
+        </table>
+      </s:form>
+    </body>
+  </html>
+</jsp:root>

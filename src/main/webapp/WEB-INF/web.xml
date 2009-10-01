@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+	<display-name>LinearRegressionStripes</display-name>
+
+	<!-- Expose resources to JSTL -->
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>points.stripes.ApplicationResources</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContextInMemoryDAO.xml, classpath:applicationContextService.xml</param-value>
+<!--
+ 		<param-value>classpath:applicationContextService.xml, classpath:applicationContextHibernateDAO.xml, classpath:applicationContextJndiDataSource.xml</param-value>
+		<param-value>classpath:applicationContextDb4oDAO.xml, classpath:applicationContextService.xml</param-value>
+ -->
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>StripesFilter</filter-name>
+		<filter-class>net.sourceforge.stripes.controller.StripesFilter</filter-class>
+		<init-param>
+			<param-name>ActionResolver.Packages</param-name>
+			<param-value>points.stripes</param-value>
+		</init-param>
+		<init-param>
+			<param-name>Extension.Packages</param-name>
+			<param-value>points.extensions, net.sourceforge.stripes.integration.spring</param-value>
+		</init-param>
+		<init-param>
+			<param-name>LocalePicker.Locales</param-name>
+			<param-value>en_US,de,es_CO</param-value>
+		</init-param>
+		<init-param>
+			<param-name>TypeConverterFactory.Class</param-name>
+			<param-value>points.stripes.PointsTypeConverterFactory</param-value>
+		</init-param>
+	</filter>
+
+	<servlet>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-class>net.sourceforge.stripes.controller.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<filter-mapping>
+		<filter-name>StripesFilter</filter-name>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+
+	<!-- Filter for Sitemesh decorator -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<!-- The Usual Welcome File List -->
+	<welcome-file-list>
+		<welcome-file>index.jspx</welcome-file>
+	</welcome-file-list>
+
+	<jsp-config>
+		<!-- Disable scripting in JSPs -->
+		<jsp-property-group>
+			<url-pattern>*.jspx</url-pattern>
+			<scripting-invalid>true</scripting-invalid>
+		</jsp-property-group>
+	</jsp-config>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Modification actions</web-resource-name>
+			<url-pattern>/Modify.action</url-pattern>
+			<url-pattern>/Init.action</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>pointadmin</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>Linear Regression</realm-name>
+		<!--
+			<form-login-config> <form-login-page>/login.jsp</form-login-page>
+			<form-error-page>/error.jsp</form-error-page> </form-login-config>
+		-->
+	</login-config>
+
+	<security-role>
+		<role-name>pointadmin</role-name>
+	</security-role>
+
+</web-app>

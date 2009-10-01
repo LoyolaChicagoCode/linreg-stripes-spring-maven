@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+  xmlns:s="http://stripes.sourceforge.net/stripes.tld"
+  version="2.0">
+  <jsp:directive.page contentType="text/html"/>
+  <html>
+    <head>
+      <title>
+        <fmt:message key="edit.title"/>
+      </title>
+    </head>
+    <body>
+      <h1>
+        <fmt:message key="global.heading"/>
+        <jsp:text>
+        </jsp:text>
+        <fmt:message key="edit.heading"/>
+      </h1>
+      <s:form beanclass="points.stripes.ModifyActionBean">
+        <s:errors/>
+        <table class="addedit">
+          <tr>
+            <td>
+              <fmt:message key="pointForm.prompt.id"/>
+            </td>
+            <td>
+              <s:text name="point.id" readonly="true"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fmt:message key="pointForm.prompt.x"/>
+            </td>
+            <td>
+              <s:text name="point.x"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fmt:message key="pointForm.prompt.y"/>
+            </td>
+            <td>
+              <s:text name="point.y"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fmt:message key="pointForm.prompt.color"/>
+            </td>
+            <td>
+              <s:select name="point.color" value="${actionBean.color}">
+                <c:forEach items="${actionBean.colors}" var="entry">
+                  <c:choose>
+                    <c:when test="${entry == actionBean.color}">
+                      <option selected="selected">${entry}</option>
+                    </c:when>
+                    <c:otherwise>
+                      <option>${entry}</option>
+                    </c:otherwise>
+                  </c:choose>
+                </c:forEach>
+<!-- Couldn't get the following to pick up the preselected value -->
+<!--
+                <s:options-collection collection="${actionBean.colors}" sort="value"/>
+-->
+              </s:select>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <s:submit name="editSubmit">
+                <fmt:message key="edit.submit"/>
+              </s:submit>
+            </td>
+          </tr>
+        </table>
+      </s:form>
+    </body>
+  </html>
+</jsp:root>

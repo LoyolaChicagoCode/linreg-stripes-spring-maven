@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+  version="2.0">
+  <jsp:directive.page contentType="text/html"/>
+  <html>
+    <head>
+      <title>
+        <fmt:message key="index.title"/>
+      </title>
+    </head>
+    <body>
+      <h1>
+        <fmt:message key="global.heading"/>
+        <jsp:text>
+        </jsp:text>
+        <fmt:message key="index.heading"/>
+      </h1>
+      <p>
+        <fmt:message key="index.body"/>
+      </p>
+    </body>
+  </html>
+</jsp:root>
