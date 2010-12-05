@@ -49,20 +49,29 @@
 	</build>
 	<repositories>
 		<repository>
-			<id>maven-etl</id>
+			<id>etl.luc.edu</id>
 			<name>Loyola ETL repository</name>
 			<url>http://maven.etl.luc.edu/artifactory/repo/</url>
 		</repository>
 		<repository>
-			<id>source.db4o</id>
-			<url>http://source.db4o.com/maven</url>
+			<id>restlet.org</id>
+			<url>http://maven.restlet.org/</url>
+		</repository>
+		<repository>
+			<id>java.net</id>
+			<url>http://download.java.net/maven/2/</url>
 		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
+			<groupId>com.db4o</groupId>
+			<artifactId>com.db4o</artifactId>
+			<version>7.7.67</version>
+		</dependency>
+		<dependency>
 			<groupId>org.mortbay.jetty</groupId>
 			<artifactId>jetty</artifactId>
-			<version>6.1.11</version>
+			<version>6.1.26</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -120,11 +129,6 @@
 			<groupId>opensymphony</groupId>
 			<artifactId>sitemesh</artifactId>
 			<version>2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.db4o</groupId>
-			<artifactId>db4o-full-java5</artifactId>
-			<version>7.13-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<properties>
