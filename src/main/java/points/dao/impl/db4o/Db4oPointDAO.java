@@ -37,9 +37,9 @@ public class Db4oPointDAO implements PointDAO {
 	@Override
 	public Point create(double x, double y, Color color) {
 		final DefaultPoint point = new DefaultPoint(x, y, color);
-		getContainer().set(point);
+		getContainer().store(point);
 		point.setId((int) getContainer().ext().getID(point));
-		getContainer().set(point);
+		getContainer().store(point);
 		return point;
 	}
 
@@ -84,9 +84,9 @@ public class Db4oPointDAO implements PointDAO {
 	}
 
 	public void initDAO() {
-		getContainer().set(Color.RED);
-		getContainer().set(Color.GREEN);
-		getContainer().set(Color.BLUE);
+		getContainer().store(Color.RED);
+		getContainer().store(Color.GREEN);
+		getContainer().store(Color.BLUE);
 	}
 
 	public void close() {
@@ -104,6 +104,6 @@ public class Db4oPointDAO implements PointDAO {
 		point.setX(x);
 		point.setY(y);
 		point.setColor(color);
-		getContainer().set(point);
+		getContainer().store(point);
 	}
 }
