@@ -2,6 +2,8 @@ package points.stripes;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
 import points.domain.impl.DefaultPoint;
@@ -11,6 +13,8 @@ import points.domain.impl.DefaultPoint;
  */
 public abstract class PointActionBean extends RegressionServiceActionBean {
 
+	private final static Logger LOGGER = Logger.getLogger(PointActionBean.class);
+
 	private int id;
 
 	public int getId() {
@@ -18,7 +22,7 @@ public abstract class PointActionBean extends RegressionServiceActionBean {
 	}
 
 	public void setId(final int id) {
-		System.out.println("setId to " + id);
+		LOGGER.debug("setId to " + id);
 		this.id = id;
 	}
 
@@ -51,7 +55,7 @@ public abstract class PointActionBean extends RegressionServiceActionBean {
 		this.point = point;
 		// make sure colors are available if there are errors
 		setColors();
-		System.out.println("setPoint to " + getPoint());
+		LOGGER.debug("setPoint to " + getPoint());
 	}
 
 	public String getColor() {

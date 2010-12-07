@@ -39,9 +39,9 @@ public class TestHibernatePointDAO extends
 	@Override
 	protected void onSetUpInTransaction() throws Exception {
 		dao.init();
-		// System.out.println("before OSUIT: " + dao.findAll());
+		// LOGGER.debug("before OSUIT: " + dao.findAll());
 		// deleteFromTables(new String[] { "POINTS", "COLORS" });
-		// System.out.println("after OSUIT: " + dao.findAll());
+		// LOGGER.debug("after OSUIT: " + dao.findAll());
 	}
 
 	public void testEmpty() {

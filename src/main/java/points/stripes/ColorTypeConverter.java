@@ -10,12 +10,15 @@ import net.sourceforge.stripes.validation.ValidationError;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
+import org.apache.log4j.Logger;
 
 public class ColorTypeConverter implements TypeConverter<Color> {
 
+	private final static Logger LOGGER = Logger.getLogger(ColorTypeConverter.class);
+
 	@Override
 	public Color convert(final String input, Class<? extends Color> clazz, final Collection<ValidationError> errors) {
-		System.out.println("conversion of color " + input);
+		LOGGER.debug("conversion of color " + input);
 		if ("red".equals(input))
 			return Color.RED;
 		if ("green".equals(input))
